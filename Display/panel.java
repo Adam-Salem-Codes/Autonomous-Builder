@@ -2,9 +2,10 @@ package Display;
 import CppBuilder.Builder;
 import CppBuilder.turnType;
 import CppEditor.KeyboardTestApp;
+import main.Main;
 
 import javax.swing.JOptionPane;
-import Main.main;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -18,23 +19,23 @@ import java.awt.geom.AffineTransform;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+@SuppressWarnings("unused")
 public class panel extends JPanel {
 	JLabel balance = new JLabel("balance board");
 	boolean nintey;
 	int i = 0;
 
 	public static final int[] field = {
-			main.display.display.getWidth() / 4, // X
-			main.display.display.getHeight() / 4, // Y
-			main.display.display.getWidth() / 2, // WIDTH
-			main.display.display.getHeight() / 2 // HEIGHT
+			Display.frame.getWidth() / 4, // X
+			Display.frame.getHeight() / 4, // Y
+			Display.frame.getWidth() / 2, // WIDTH
+			Display.frame.getHeight() / 2 // HEIGHT
 	};
 	public panel(){
-		this.setPreferredSize(new Dimension(main.display.display.getWidth(), main.display.display.getHeight()));
-		this.add(main.Comp);
-		this.add(main.Skills);
-		this.add(main.welcome);
+		this.setPreferredSize(new Dimension(Display.frame.getWidth(), Display.frame.getHeight()));
+		this.add(Main.Comp);
+		this.add(Main.Skills);
+		this.add(Main.welcome);
 		createUI();
 		
 	}
@@ -45,7 +46,7 @@ public class panel extends JPanel {
 		Exit.addActionListener(e -> {
 			try {
 				addCpp("", true);
-			    JOptionPane.showMessageDialog(Display.display, "C++ program has been created in"
+			    JOptionPane.showMessageDialog(Display.frame, "C++ program has been created in"
 			    		+ " the build folder. Exiting");
 				Display.exit();
 				System.exit(0);
@@ -81,7 +82,6 @@ public class panel extends JPanel {
 				paintLine(this.getGraphics(), (int)Math.round(y), turnType.forward,field);
 				i++;
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
@@ -264,9 +264,6 @@ public class panel extends JPanel {
 		    		
 	    		balance.setAlignmentX(field[0] + offset);
 	    		balance.setAlignmentY(field[0] * 2 - 50 /2);
-	    		
-
-	    		
 	    }
 	 
 	 public void paintLine(Graphics g, int dist, turnType t, int[] field) {
@@ -277,19 +274,14 @@ public class panel extends JPanel {
 				field[0],
 				field[1] * 3 - 12 
 		 };
-		 
-		 
-		 
-		 
-		
-		 if(!t.equals(t.forward)) {
+		 if(!t.equals(turnType.forward)) {
 			 //code
 			 return;
 		 }
 
 		
 			//draw shape/image (will be rotated)
-			AffineTransform old = g2D.getTransform();		 
+		AffineTransform old = g2D.getTransform();		 
 		 if(i >= 1) {
 			String x = JOptionPane.showInputDialog(this,"How much do you want to go forward after turn?(feet): ");  
 			double y = Double.parseDouble(x);

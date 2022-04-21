@@ -19,7 +19,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 public class Display {
-    public static JFrame display;
+    public static JFrame frame;
     public static boolean WindowClosed;
     public static boolean isClosing;
     public static boolean isActiveWindow;
@@ -31,8 +31,8 @@ public class Display {
 
     public Display(String args) {
     	 
-        display = new JFrame(args);
-        display.addWindowListener(new WindowListener() {
+        frame = new JFrame(args);
+        frame.addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent e) {
                 windowOpened = true;
@@ -74,15 +74,16 @@ public class Display {
         });
     }
     public Display()  {
-        display = new JFrame();
-        PrintWriter out;
+        frame = new JFrame();
 		try {
+            PrintWriter out;
 			out = new PrintWriter(new BufferedWriter(new FileWriter("build\\Autonomous.cpp")));
+            out.flush();
+            out.close();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-        display.addWindowListener(new WindowListener() {
+        frame.addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent e) {
                 windowOpened = true;
@@ -128,27 +129,27 @@ public class Display {
         pack();
         setVisible(true);
     }
-    public void pack() {display.pack();}
-    public void setName(String name) {display.setName(name);}
-    public String getName() {return display.getName();}
-    public void setVisible(boolean args) {display.setVisible(args);}
-    public void setExitOnClose(int status) {display.setDefaultCloseOperation(status);}
+    public void pack() {frame.pack();}
+    public void setName(String name) {frame.setName(name);}
+    public String getName() {return frame.getName();}
+    public void setVisible(boolean args) {frame.setVisible(args);}
+    public void setExitOnClose(int status) {frame.setDefaultCloseOperation(status);}
     public static void exit() {System.exit(1);}
-    public void exitDisplay() {display.dispose();}
+    public void exitDisplay() {frame.dispose();}
     public void add(Component args) {
-    	display.add(args);
+    	frame.add(args);
     }
-    public void remove(Component args) {display.remove(args);}
-    public void setSize(Dimension d){display.setSize(d);}
-    public void setLayout(LayoutManager manager) {display.getContentPane().setLayout(manager);}
+    public void remove(Component args) {frame.remove(args);}
+    public void setSize(Dimension d){frame.setSize(d);}
+    public void setLayout(LayoutManager manager) {frame.getContentPane().setLayout(manager);}
     public void paint(Graphics g) {
-        if (!display.isOpaque()) {
+        if (!frame.isOpaque()) {
             Graphics gg = g.create();
             try {
                 if (gg instanceof Graphics2D) {
-                    gg.setColor(display.getBackground());
+                    gg.setColor(frame.getBackground());
                     ((Graphics2D)gg).setComposite(AlphaComposite.getInstance(AlphaComposite.SRC));
-                    gg.fillRect(0, 0, display.getWidth(), display.getHeight());
+                    gg.fillRect(0, 0, frame.getWidth(), frame.getHeight());
                 }
             } finally {
                 gg.dispose();

@@ -1,4 +1,4 @@
-package Main;
+package main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import CppBuilder.Builder;
 import Display.Display;
 import Display.panel;
 
-public class main {
+public class Main {
     static final String cppTemplate = "#include \"vex.h\"\n #include \"methods.h\" \n using namespace vex; \n int main() {\nvexcodeInit(); ";
     public static boolean skillsComp;
     public static Display display = new Display();
@@ -23,7 +23,7 @@ public class main {
         	display.initDisplay();
             display.setSize(new Dimension(1080, 1920));
             
-            display.display.getContentPane().setBackground(Color.decode("#1d1d1d"));
+            Display.frame.getContentPane().setBackground(Color.decode("#1d1d1d"));
 
       
             

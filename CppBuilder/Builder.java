@@ -1,28 +1,13 @@
 package CppBuilder;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-
-import javax.swing.GroupLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-import Display.Display;
-import Display.panel;
 
 public class Builder {
 	public static String filePath;
@@ -32,28 +17,6 @@ public class Builder {
     public static void buildTemplate(String template) throws IOException {
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(filePath = "build\\Autonomous.cpp")));
         PrintWriter vex = new PrintWriter(new BufferedWriter(new FileWriter("build\\vex.h")));
-        PrintWriter methods = new PrintWriter(new BufferedWriter(new FileWriter("build\\methods.h")));
-        methods.append("void turn(turnType dir) { Drivetrain.turnFor(dir, 90, degrees); }\r\n"
-        		+ "void drive(double dist) { Drivetrain.driveFor(f, dist, i); }\r\n"
-        		+ "void println(const char *args) {\r\n"
-        		+ "  Brain.Screen.print(args);\r\n"
-        		+ "  Brain.Screen.newLine();\r\n"
-        		+ "}\r\n"
-        		+ "void driveFor(double distance, distanceUnits units, double velocity, velocityUnits units_v){\r\n"
-        		+ "  Drivetrain.driveFor(distance, units, velocity, units_v);\r\n"
-        		+ "}\r\n"
-        		+ "void driveFor(directionType direction, double distance, distanceUnits units) {\r\n"
-        		+ "  Drivetrain.driveFor(direction, distance, units);\r\n"
-        		+ "}\r\n"
-        		+ "void driveFor(double distance, distanceUnits units, double velocity){\r\n"
-        		+ "  Drivetrain.driveFor(distance, units, velocity);\r\n"
-        		+ "}\r\n"
-        		+ "void printALL(const char* message){\r\n"
-        		+ "  Brain.Screen.print(message);\r\n"
-        		+ "  Brain.Screen.newLine();\r\n"
-        		+ "  Controller1.Screen.print(message);\r\n"
-        		+ "  Controller1.Screen.newLine();\r\n"
-        		+ "}");
         vex.append("/*----------------------------------------------------------------------------*/\r\n"
         		+ "/*                                                                            */\r\n"
         		+ "/*    Module:       vex.h                                                     */\r\n"
@@ -83,6 +46,9 @@ public class Builder {
         out.append(template);
         vex.flush();
         out.flush();
+		vex.close();
+		out.close();
+
     }
     public static void append(String toBeAppended, boolean last, PrintWriter pw) {
     	if(last) {
@@ -112,12 +78,12 @@ public class Builder {
 					include = false;
 				}
 			}
+			br.close();
 			return fileData;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return null;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

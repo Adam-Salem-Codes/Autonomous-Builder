@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -25,7 +24,6 @@ import Display.Display;
 public class KeyboardTestApp implements ActionListener {
 
 	private Thread thread = new Thread("TextAppThread#1");
-	private Display display = new Display("Autonomous Builder C++");
 	private JTextArea textarea = new JTextArea();
 	private Font font = new Font("Montserrat Thin", Font.BOLD, 35);
     private JScrollPane scrollpane = new JScrollPane(textarea);
@@ -45,13 +43,13 @@ public class KeyboardTestApp implements ActionListener {
         String fileData = Builder.getFileData();
         System.out.println();
         textarea.setText(fileData);
-		scrollpane.setPreferredSize(display.display.getSize());
-		display.display.setSize(700,700);
-		display.display.setLocationRelativeTo(null);
-		display.display.add(scrollpane);
-		display.display.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		display.display.setVisible(true);
-		display.display.setJMenuBar(mb);
+		scrollpane.setPreferredSize(Display.frame.getSize());
+		Display.frame.setSize(700,700);
+		Display.frame.setLocationRelativeTo(null);
+		Display.frame.add(scrollpane);
+		Display.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		Display.frame.setVisible(true);
+		Display.frame.setJMenuBar(mb);
         //Menu Bar Section
         mb.setBackground(Color.white);
         mb.add(fileMenu);
