@@ -11,7 +11,9 @@ want to you can improve it if you want and make it better.
 
 ## Known Bugs[^1] 🐜:
 The buttons on the UI don't show up immediately you will need
-to hover over the buttons before they show.
+to hover over the buttons before they show. Another bug
+after using the program the program incorrectly saves the information
+as "}}" 
 
 ---
 
