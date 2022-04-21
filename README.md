@@ -11,9 +11,10 @@ want to you can improve it if you want and make it better.
 
 ## Known Bugs[^1] 🐜:
 The buttons on the UI don't show up immediately you will need
-to hover over the buttons before they show. Another bug
+to hover over the buttons before they show. Another bug rarely
 after using the program the program incorrectly saves the information
-as "}}" 
+as "}}". Another one is that if /build directory doesn't exist the program
+turns black and doesn't work at all.
 
 ---
 
