@@ -16,3 +16,5 @@ an Autonomous program for vEx v5 Robots also it generates C++ based on
 the user input through buttons. Unfortunately this is an unfinished
 project and I would not recommend using it. But luckly if you
 want to you can improve it if you want and make it better.
+
+# This is an old and deprecated project, do not use.
